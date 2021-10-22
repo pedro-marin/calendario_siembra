@@ -1,0 +1,79 @@
+@model IEnumerable<calendario.Models.Recurso>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $('#tbl_recurso').DataTable();
+        });
+    </script>
+}
+
+<h1>Tabla: Recurso</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo</a>
+</p>
+<table id="tbl_recurso" class="display">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Ubicación
+            </th>
+            <th>
+                Tamaño
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Fecha de Registro
+            </th>
+            <th>
+                Tipo de Cultivo
+            </th>
+            <th>
+                Tipo de Recurso
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UbicacionRecurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tamano)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCultivoNavigation.Estacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoRecursoNavigation.NombreTipoRecurso)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdRecurso" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdRecurso" class="btn btn-info">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdRecurso" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

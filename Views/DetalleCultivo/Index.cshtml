@@ -1,0 +1,67 @@
+@model IEnumerable<calendario.Models.Detallecultivo>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $('#tbl_detallecultivo').DataTable();
+        });
+    </script>
+}
+
+<h1>Tabla: Detalle de Cultivo</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo</a>
+</p>
+<table id="tbl_detallecultivo" class="display">
+    <thead>
+        <tr>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Fecha de Registro
+            </th>
+            <th>
+                Tipo de Riego
+            </th>
+            <th>
+                Tipo de Suelo
+            </th>
+            <th>
+                Tipo de Técnica
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoRiegoNavigation.NombreTipoRiego)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoSueloNavigation.NombreTipoSuelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdTipoTecnicaNavigation.NombreTipoTecnica)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdDetalleCultivo" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdDetalleCultivo" class="btn btn-info">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdDetalleCultivo" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

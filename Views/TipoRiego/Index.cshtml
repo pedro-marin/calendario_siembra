@@ -1,0 +1,49 @@
+@model IEnumerable<calendario.Models.Tiporiego>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $('#tbl_tiporiego').DataTable();
+        });
+    </script>
+}
+
+<h1>Tabla: Tipo de Riego</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo</a>
+</p>
+<table id="tbl_tiporiego" class="display">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Fecha de Registro
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreTipoRiego)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdTipoRiego" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdTipoRiego" class="btn btn-info">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdTipoRiego" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

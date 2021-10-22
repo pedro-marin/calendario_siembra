@@ -1,0 +1,61 @@
+@model calendario.Models.Cultivo
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Cultivo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdCultivo" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCategoriaCultivo" class="control-label"></label>
+                <select asp-for="IdCategoriaCultivo" class="form-control" asp-items="ViewBag.IdCategoriaCultivo"></select>
+                <span asp-validation-for="IdCategoriaCultivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdDetalleCultivo" class="control-label"></label>
+                <select asp-for="IdDetalleCultivo" class="form-control" asp-items="ViewBag.IdDetalleCultivo"></select>
+                <span asp-validation-for="IdDetalleCultivo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estacion" class="control-label"></label>
+                <input asp-for="Estacion" class="form-control" />
+                <span asp-validation-for="Estacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaInicio" class="control-label"></label>
+                <input asp-for="FechaInicio" class="form-control" />
+                <span asp-validation-for="FechaInicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaTermino" class="control-label"></label>
+                <input asp-for="FechaTermino" class="form-control" />
+                <span asp-validation-for="FechaTermino" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FechaRegistro" class="control-label"></label>
+                <input asp-for="FechaRegistro" class="form-control" />
+                <span asp-validation-for="FechaRegistro" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

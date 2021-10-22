@@ -1,0 +1,76 @@
+﻿@model IEnumerable<calendario.Models.Cultivo>
+@{
+    ViewData["Title"] = "Home Page";
+}
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $('#tbl_cultivo').DataTable();
+        });
+    </script>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Calendario de Siembra</h1>
+    <p>Desarrolla tus proyectos agrícolas de manera profesional!</p>
+    <table id="tbl_cultivo" class="display">
+    <thead>
+        <tr>
+            <th>
+                Nombre de Cultivo
+            </th>
+            <th>
+                Estación
+            </th>
+            <th>
+                Fecha Inicial
+            </th>
+            <th>
+                Fecha Final
+            </th>
+            <th>
+                Fecha de Registro
+            </th>
+            <th>
+                Categoría de Cultivo
+            </th>
+            <th>
+                Detalle
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaTermino)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategoriaCultivoNavigation.NombreCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdDetalleCultivoNavigation.Descripcion)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdCultivo" class="btn btn-warning">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdCultivo" class="btn btn-info">Detalles</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdCultivo" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
