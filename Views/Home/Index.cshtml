@@ -28,20 +28,12 @@
             <th>
                 Fecha Final
             </th>
-            <th>
-                Fecha de Registro
-            </th>
-            <th>
-                Categoría de Cultivo
-            </th>
-            <th>
-                Detalle
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
+            
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
@@ -55,20 +47,20 @@
             <td>
                 @Html.DisplayFor(modelItem => item.FechaTermino)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaRegistro)
+            <td id="@item.IdCultivo"> |
+                <script> 
+                    var mapping = "@item";
+                    var tableName = mapping.split(".");
+                    var rutaTabla = "/"+tableName[2]+"/"+"Details"+"/"+"@item.IdCultivo";
+                    var a = document.createElement("a");
+                    a.innerHTML = "Detalles";
+                    a.setAttribute("href",rutaTabla);
+                    a.setAttribute("class","btn btn-info");
+                    var td_detalle = document.getElementById("@item.IdCultivo");
+                    td_detalle.appendChild(a);
+                </script>
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCategoriaCultivoNavigation.NombreCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdDetalleCultivoNavigation.Descripcion)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdCultivo" class="btn btn-warning">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.IdCultivo" class="btn btn-info">Detalles</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdCultivo" class="btn btn-danger">Eliminar</a>
-            </td>
+            
         </tr>
 }
     </tbody>
